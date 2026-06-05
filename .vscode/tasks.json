@@ -235,6 +235,16 @@
                                    "."
                                ],
                       "group":  "build"
+                  },
+                  {
+                      "label":  "Service Control GUI (BAT)",
+                      "type":  "shell",
+                      "command":  "cmd",
+                      "args":  [
+                                   "/c",
+                                   "scripts\\\\service-control-gui.bat"
+                               ],
+                      "isBackground":  true
                   }
               ]
 }
