@@ -1,0 +1,212 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Plan Mode",
+      "type": "shell",
+      "command": "powershell",
+      "args": [
+        "-ExecutionPolicy",
+        "Bypass",
+        "-File",
+        "scripts/plan-mode.ps1",
+        "-Root",
+        "."
+      ],
+      "group": "build"
+    },
+    {
+      "label": "Compact Context",
+      "type": "shell",
+      "command": "powershell",
+      "args": [
+        "-ExecutionPolicy",
+        "Bypass",
+        "-File",
+        "scripts/compact-context.ps1"
+      ]
+    },
+    {
+      "label": "Quality Gate",
+      "type": "shell",
+      "command": "powershell",
+      "args": [
+        "-ExecutionPolicy",
+        "Bypass",
+        "-File",
+        "scripts/quality-gate.ps1"
+      ],
+      "group": "test"
+    },
+    {
+      "label": "Run Agent GUI",
+      "type": "shell",
+      "command": "powershell",
+      "args": [
+        "-ExecutionPolicy",
+        "Bypass",
+        "-Command",
+        "Set-Item -Path Env:PYTHONPATH -Value src; Set-Location agent-platform; .\\.venv\\Scripts\\python.exe -m streamlit run app_robust.py"
+      ],
+      "isBackground": true
+    },
+    {
+      "label": "Health Check",
+      "type": "shell",
+      "command": "powershell",
+      "args": [
+        "-ExecutionPolicy",
+        "Bypass",
+        "-File",
+        "agent-platform/scripts/health-check.ps1"
+      ],
+      "group": "test"
+    },
+    {
+      "label": "E2E Smoke Test",
+      "type": "shell",
+      "command": "powershell",
+      "args": [
+        "-ExecutionPolicy",
+        "Bypass",
+        "-Command",
+        "Set-Item -Path Env:PYTHONDONTWRITEBYTECODE -Value 1; Set-Item -Path Env:PYTHONPATH -Value src; Set-Location agent-platform; .\\.venv\\Scripts\\python.exe -B tests\\test_e2e_smoke.py"
+      ],
+      "group": "test"
+    },
+    {
+      "label": "Integration Test",
+      "type": "shell",
+      "command": "powershell",
+      "args": [
+        "-ExecutionPolicy",
+        "Bypass",
+        "-Command",
+        "Set-Item -Path Env:PYTHONDONTWRITEBYTECODE -Value 1; Set-Item -Path Env:PYTHONPATH -Value src; Set-Location agent-platform; .\\.venv\\Scripts\\python.exe -B tests\\test_integration_retry.py"
+      ],
+      "group": "test"
+    },
+    {
+      "label": "Hermes Reinforcement Loop",
+      "type": "shell",
+      "command": "powershell",
+      "args": [
+        "-ExecutionPolicy",
+        "Bypass",
+        "-File",
+        "scripts/hermes-reinforce.ps1",
+        "-Root",
+        "."
+      ],
+      "group": "test"
+    },
+    {
+      "label": "Secretary Sync",
+      "type": "shell",
+      "command": "powershell",
+      "args": [
+        "-ExecutionPolicy",
+        "Bypass",
+        "-Command",
+        "Set-Location personal-secretary; Set-Item -Path Env:PYTHONPATH -Value src; .\\.venv\\Scripts\\python.exe run_sync.py"
+      ],
+      "group": "test"
+    },
+    {
+      "label": "Secretary Dashboard",
+      "type": "shell",
+      "command": "powershell",
+      "args": [
+        "-ExecutionPolicy",
+        "Bypass",
+        "-File",
+        "scripts/start-secretary-dashboard.ps1",
+        "-Root",
+        ".",
+        "-Port",
+        "8503"
+      ],
+      "isBackground": true
+    },
+    {
+      "label": "Telegram Bot Poller",
+      "type": "shell",
+      "command": "powershell",
+      "args": [
+        "-ExecutionPolicy",
+        "Bypass",
+        "-Command",
+        "Set-Location personal-secretary; Set-Item -Path Env:PYTHONPATH -Value src; .\\.venv\\Scripts\\python.exe run_telegram_bot.py"
+      ],
+      "isBackground": true
+    },
+    {
+      "label": "Build Knowledge Index",
+      "type": "shell",
+      "command": "powershell",
+      "args": [
+        "-ExecutionPolicy",
+        "Bypass",
+        "-File",
+        "scripts/build-knowledge-index.ps1",
+        "-Root",
+        "."
+      ],
+      "group": "build"
+    },
+    {
+      "label": "Auto Learn Staff Skills",
+      "type": "shell",
+      "command": "powershell",
+      "args": [
+        "-ExecutionPolicy",
+        "Bypass",
+        "-File",
+        "scripts/auto-learn-skills.ps1",
+        "-Root",
+        "."
+      ],
+      "group": "build"
+    },
+    {
+      "label": "Wiki Role Coverage Report",
+      "type": "shell",
+      "command": "powershell",
+      "args": [
+        "-ExecutionPolicy",
+        "Bypass",
+        "-Command",
+        "Set-Location agent-platform; .\\.venv\\Scripts\\python.exe scripts\\wiki-role-coverage-report.py"
+      ],
+      "group": "test"
+    },
+    {
+      "label": "Wiki Quality Eval",
+      "type": "shell",
+      "command": "powershell",
+      "args": [
+        "-ExecutionPolicy",
+        "Bypass",
+        "-Command",
+        "Set-Location agent-platform; .\\.venv\\Scripts\\python.exe scripts\\wiki-quality-eval.py --min-pass-rate 0.75 --strict"
+      ],
+      "group": "test"
+    },
+    {
+      "label": "Nightly Knowledge Pipeline",
+      "type": "shell",
+      "command": "powershell",
+      "args": [
+        "-ExecutionPolicy",
+        "Bypass",
+        "-File",
+        "scripts/nightly-knowledge.ps1",
+        "-Root",
+        ".",
+        "-MinPassRate",
+        "0.75"
+      ],
+      "group": "test"
+    }
+  ]
+}

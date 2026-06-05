@@ -1,0 +1,100 @@
+[
+  {
+    "id": "lma-bess",
+    "title": "Laban Movement Analysis (BESS)",
+    "domain": "movement-dynamics",
+    "source_url": "https://en.wikipedia.org/wiki/Laban_movement_analysis",
+    "keywords": [
+      "walk",
+      "run",
+      "turn",
+      "gait",
+      "rhythm",
+      "group",
+      "motion"
+    ],
+    "cues": [
+      "explicit gait quality with stride rhythm and weight transfer",
+      "space-time-weight-flow dynamics are readable",
+      "body effort changes are gradual and intentional"
+    ]
+  },
+  {
+    "id": "stanislavski-physical-action",
+    "title": "Stanislavski Method of Physical Action",
+    "domain": "acting-method",
+    "source_url": "https://en.wikipedia.org/wiki/Stanislavski%27s_system",
+    "keywords": [
+      "emotion",
+      "objective",
+      "task",
+      "intention",
+      "character",
+      "turn",
+      "interaction"
+    ],
+    "cues": [
+      "action is driven by character objective and intention",
+      "movement follows task chain instead of random gestures",
+      "each beat has clear initiation and follow-through"
+    ]
+  },
+  {
+    "id": "facs-expression",
+    "title": "Facial Action Coding System (FACS)",
+    "domain": "facial-expression",
+    "source_url": "https://en.wikipedia.org/wiki/Facial_Action_Coding_System",
+    "keywords": [
+      "face",
+      "expression",
+      "emotion",
+      "smile",
+      "close-up",
+      "eyes",
+      "head"
+    ],
+    "cues": [
+      "emotion appears in face and eye timing, not only in body",
+      "micro-expression intensity is controlled and coherent across frames",
+      "head and gaze movement support emotional state"
+    ]
+  },
+  {
+    "id": "emote-shape-effort",
+    "title": "EMOTE model for effort and shape",
+    "domain": "animation-research",
+    "source_url": "https://repository.upenn.edu/cgi/viewcontent.cgi?article=1044&context=hms",
+    "keywords": [
+      "animation",
+      "effort",
+      "shape",
+      "stylized",
+      "gesture",
+      "timing"
+    ],
+    "cues": [
+      "gesture arc and recovery are visible",
+      "timing accents align with emotional beats",
+      "silhouette remains readable during motion"
+    ]
+  },
+  {
+    "id": "multi-character-blocking",
+    "title": "Multi-character blocking principle",
+    "domain": "staging",
+    "source_url": "",
+    "keywords": [
+      "two",
+      "three",
+      "group",
+      "crowd",
+      "conversation",
+      "multi"
+    ],
+    "cues": [
+      "main character has highest motion detail and emotional clarity",
+      "supporting characters use simpler complementary actions",
+      "background motion stays natural and lower amplitude"
+    ]
+  }
+]

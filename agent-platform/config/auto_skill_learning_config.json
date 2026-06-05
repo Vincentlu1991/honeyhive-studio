@@ -1,0 +1,31 @@
+{
+  "enabled": true,
+  "max_chunks_per_staff": 10,
+  "max_source_lines": 8,
+  "github": {
+    "enabled": true,
+    "query": "comfyui workflow",
+    "top_repos": 8,
+    "min_stars": 100,
+    "readme_max_chars": 2200,
+    "request_timeout_seconds": 20
+  },
+  "staff_focus_keywords": {
+    "supervisor_video": ["strategy", "handoff", "risk", "workflow", "comfyui", "retry", "qa"],
+    "image": ["image", "composition", "lighting", "reference", "style", "subject"],
+    "production": ["timeline", "plan", "resource", "cost", "risk", "throughput"],
+    "story": ["story", "scene", "action", "mood", "narrative", "shot"],
+    "prompt": ["prompt", "negative", "camera", "motion", "style", "consistency"],
+    "builder": ["comfyui", "workflow", "node", "mapping", "sampler", "karras", "dpmpp_2m", "seed"],
+    "qa": ["qa", "quality", "artifact", "stability", "identity", "retry"],
+    "supervisor_secretary": ["coordination", "evidence", "handoff", "report", "quality"],
+    "retriever": ["retrieve", "evidence", "query", "source", "citation", "recall"],
+    "document_reader": ["read", "extract", "table", "pdf", "docx", "evidence"],
+    "fileops": ["path", "archive", "organize", "copy", "dedupe", "storage"],
+    "finance": ["finance", "cost", "expense", "income", "budget", "roi"],
+    "learning": ["learn", "curriculum", "practice", "milestone", "roadmap"],
+    "business_plan": ["business", "market", "product", "pricing", "go-to-market", "risk"],
+    "report": ["report", "summary", "decision", "executive", "milestone"],
+    "secretary_qa": ["audit", "coverage", "validation", "completeness", "consistency"]
+  }
+}

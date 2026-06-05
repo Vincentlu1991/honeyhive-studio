@@ -1,0 +1,173 @@
+{
+  "enabled": true,
+  "index_path": "output/wiki/knowledge_index.json",
+  "state_path": "output/wiki/knowledge_state.json",
+  "obsidian": {
+    "enabled": true,
+    "vault_path": "output/obsidian_vault",
+    "knowledge_folder": "00_ProjectKnowledge",
+    "write_meta_index": true
+  },
+  "sources": [
+    {
+      "path": "docs",
+      "type": "docs",
+      "globs": [
+        "**/*.md",
+        "**/*.pdf",
+        "**/*.docx",
+        "**/*.jpg",
+        "**/*.jpeg",
+        "**/*.png",
+        "**/*.webp"
+      ]
+    },
+    {
+      "path": "output/skills",
+      "type": "skills",
+      "glob": "*.md"
+    },
+    {
+      "path": "CLAUDE.md",
+      "type": "project_context",
+      "glob": ""
+    },
+    {
+      "path": "E:/Dropbox/共享文件夹",
+      "type": "boss_personal",
+      "globs": [
+        "**/*.md",
+        "**/*.txt",
+        "**/*.rst",
+        "**/*.csv",
+        "**/*.json",
+        "**/*.yml",
+        "**/*.yaml",
+        "**/*.ipynb",
+        "**/*.html",
+        "**/*.htm",
+        "**/*.pdf",
+        "**/*.docx",
+        "**/*.doc",
+        "**/*.pptx",
+        "**/*.ppt",
+        "**/*.xlsx",
+        "**/*.xls",
+        "**/*.rtf",
+        "**/*.jpg",
+        "**/*.jpeg",
+        "**/*.png",
+        "**/*.webp"
+      ],
+      "excludes": ["Adelaide", "SP_数据科学"],
+      "_note": "Dropbox 共享文件夹，已排除 Adelaide 和 SP_数据科学（独立以 education 类型入库）"
+    },
+    {
+      "path": "E:/Dropbox/共享文件夹/Adelaide",
+      "type": "education",
+      "globs": [
+        "**/*.md", "**/*.txt", "**/*.pdf",
+        "**/*.docx", "**/*.doc",
+        "**/*.pptx", "**/*.ppt",
+        "**/*.xlsx", "**/*.xls"
+      ],
+      "_note": "University of Adelaide 创新与企业家管理课程材料（2013-2016）：Applied Entrepreneurship / Innovation / Law for Entrepreneurs / New Venture Planning / Strategy / Project Management / Technology Commercialization"
+    },
+    {
+      "path": "E:/Dropbox/共享文件夹/SP_数据科学",
+      "type": "education",
+      "globs": [
+        "**/*.md", "**/*.txt", "**/*.pdf",
+        "**/*.docx", "**/*.doc",
+        "**/*.ipynb", "**/*.py",
+        "**/*.html", "**/*.htm",
+        "**/*.xlsx", "**/*.xls",
+        "**/*.csv"
+      ],
+      "_note": "Singapore Polytechnic 数据科学 AI 文凭课程材料（2023-2024）：Machine Learning / Statistics / Python / Data Analysis / AI Applications"
+    },
+    {
+      "path": "E:/Dropbox/personal",
+      "type": "boss_personal",
+      "globs": [
+        "**/*.md",
+        "**/*.txt",
+        "**/*.rst",
+        "**/*.csv",
+        "**/*.json",
+        "**/*.yml",
+        "**/*.yaml",
+        "**/*.ipynb",
+        "**/*.html",
+        "**/*.htm",
+        "**/*.pdf",
+        "**/*.docx",
+        "**/*.doc",
+        "**/*.pptx",
+        "**/*.ppt",
+        "**/*.xlsx",
+        "**/*.xls",
+        "**/*.rtf",
+        "**/*.jpg",
+        "**/*.jpeg",
+        "**/*.png",
+        "**/*.webp"
+      ]
+    },
+    {
+      "path": "output/personal_profiles",
+      "type": "boss_profile",
+      "globs": ["**/*.md"],
+      "_note": "结构化个人档案：Lu Weixiong本人/配偶/岳母/妈妈信息，用于PR/LTVP申请填表和简历查询"
+    },
+    {
+      "path": "output/telegram_knowledge",
+      "type": "telegram_knowledge",
+      "globs": ["**/*.md"],
+      "_note": "Telegram Bot 上传的知识类文件导出，自动按项目与分类整理后入库"
+    },
+    {
+      "path": "E:/Dropbox/结婚",
+      "type": "boss_profile",
+      "globs": [
+        "**/*.md", "**/*.txt", "**/*.pdf",
+        "**/*.docx", "**/*.doc",
+        "**/*.jpg", "**/*.jpeg", "**/*.png"
+      ],
+      "_note": "结婚/LTVP/PR/房子相关文件，包含Lu Weixiong和Zhang Beiqi所有申请材料"
+    },
+    {
+      "path": "E:/Dropbox/Renew-ltvp",
+      "type": "boss_profile",
+      "globs": ["**/*.pdf", "**/*.jpg", "**/*.jpeg", "**/*.png"],
+      "_note": "张蓓琦LTVP续签文件（2024年批准），包含担保人声明/COE/薪资单"
+    },
+    {
+      "path": "E:/Dropbox/签证",
+      "type": "boss_profile",
+      "globs": ["**/*.txt", "**/*.pdf", "**/*.jpg", "**/*.jpeg", "**/*.png"],
+      "_note": "签证相关文件，含护照/身份证扫描件"
+    }
+  ],
+  "chunk": {
+    "max_chars": 900,
+    "overlap_chars": 120,
+    "min_chars": 80
+  },
+  "retrieval": {
+    "top_k": 5,
+    "max_context_chars": 2200,
+    "min_score": 0.08
+  },
+  "weights": {
+    "keyword": 1.0,
+    "staff_scope_boost": 0.9,
+    "team_scope_boost": 0.5,
+    "skills_source_boost": 0.2,
+    "project_context_boost": 0.1,
+    "boss_profile_boost": 0.8,
+    "education_boost": 0.6,
+    "telegram_knowledge_boost": 0.4,
+    "_note": "boss_profile_boost：个人档案/签证/PR/简历检索优先级高；education_boost：学历课程内容优先级高于普通文档；telegram_knowledge_boost：Telegram 上传的知识材料优先于普通文档"
+  }
+}

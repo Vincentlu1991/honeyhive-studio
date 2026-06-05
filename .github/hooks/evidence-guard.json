@@ -1,0 +1,13 @@
+{
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "type": "command",
+        "windows": {
+          "command": "powershell -ExecutionPolicy Bypass -File scripts/hook-evidence-guard.ps1"
+        },
+        "timeout": 10
+      }
+    ]
+  }
+}

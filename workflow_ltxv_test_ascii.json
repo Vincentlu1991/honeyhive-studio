@@ -1,0 +1,74 @@
+{
+  "1": {
+    "inputs": {
+      "ckpt_name": "ltxv-2b-0.9.8-distilled.safetensors"
+    },
+    "class_type": "LTXVCheckpointLoader",
+    "_meta": {
+      "title": "LTXV Checkpoint Loader"
+    }
+  },
+  "2": {
+    "inputs": {
+      "text": "Singapore Merlion statue comes to life, swimming happily in the pool in front of Marina Bay Sands hotel, cinematic lighting, high quality, smooth motion, realistic water splashes",
+      "clip": ["1", 1]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "Positive Prompt"
+    }
+  },
+  "3": {
+    "inputs": {
+      "text": "blurry, distorted, static, low quality, bad anatomy, watermark, text, lowres",
+      "clip": ["1", 1]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "Negative Prompt"
+    }
+  },
+  "4": {
+    "inputs": {
+      "width": 704,
+      "height": 480,
+      "num_frames": 25,
+      "steps": 8,
+      "cfg_scale": 1.0,
+      "seed": 42,
+      "sampler_name": "euler",
+      "scheduler": "simple",
+      "fps": 24,
+      "model": ["1", 0],
+      "positive": ["2", 0],
+      "negative": ["3", 0]
+    },
+    "class_type": "LTXVSampler",
+    "_meta": {
+      "title": "LTXV Sampler"
+    }
+  },
+  "5": {
+    "inputs": {
+      "samples": ["4", 0],
+      "vae": ["1", 2]
+    },
+    "class_type": "VAEDecode",
+    "_meta": {
+      "title": "VAE Decode"
+    }
+  },
+  "6": {
+    "inputs": {
+      "frame_rate": 24,
+      "loop_count": 0,
+      "filename_prefix": "ltxv_text2video_merlion",
+      "format": "video/h264-mp4",
+      "images": ["5", 0]
+    },
+    "class_type": "VHS_VideoCombine",
+    "_meta": {
+      "title": "Video Output"
+    }
+  }
+}

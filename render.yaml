@@ -1,0 +1,27 @@
+services:
+  - type: web
+    name: multi-agent-video-control-plane
+    runtime: python
+    plan: free
+    rootDir: agent-platform
+    buildCommand: pip install -r requirements.txt
+    startCommand: streamlit run app_robust.py --server.address 0.0.0.0 --server.port $PORT --server.headless true
+    envVars:
+      - key: PYTHONPATH
+        value: src
+      - key: ENABLE_LOCAL_LLM
+        value: "false"
+      - key: COMFYUI_BASE_URL
+        sync: false
+      - key: COMFYUI_WORKFLOW_PATH
+        value: ../workflow_ltxv_img2video_test.json
+      - key: COMFYUI_TIMEOUT_SECONDS
+        value: "600"
+      - key: MAX_RENDER_RETRIES
+        value: "1"
+      - key: SENTRY_DSN
+        sync: false
+      - key: SENTRY_ENVIRONMENT
+        value: production
+      - key: APP_RELEASE
+        value: multi-agent-video@0.1.0

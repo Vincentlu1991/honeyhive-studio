@@ -1,0 +1,115 @@
+{
+  "1": {
+    "inputs": {
+      "ckpt_name": "v1-5-pruned-emaonly.safetensors"
+    },
+    "class_type": "CheckpointLoaderSimple",
+    "_meta": {
+      "title": "Load Checkpoint"
+    }
+  },
+  "2": {
+    "inputs": {
+      "clip": ["1", 1],
+      "text": "masterpiece, best quality, cinematic, a beautiful woman dancing, smooth motion, detailed face, soft lighting"
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP Text Encode (Positive)"
+    }
+  },
+  "3": {
+    "inputs": {
+      "clip": ["1", 1],
+      "text": "blurry, distorted, low quality, bad hands, static, frozen"
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP Text Encode (Negative)"
+    }
+  },
+  "4": {
+    "inputs": {
+      "seed": 42,
+      "steps": 20,
+      "cfg": 7.5,
+      "sampler_name": "dpmpp_2m_karras",
+      "scheduler": "karras",
+      "denoise": 1.0,
+      "model": ["1", 0],
+      "positive": ["2", 0],
+      "negative": ["3", 0],
+      "latent_image": ["5", 0]
+    },
+    "class_type": "KSampler",
+    "_meta": {
+      "title": "KSampler"
+    }
+  },
+  "5": {
+    "inputs": {
+      "width": 512,
+      "height": 512,
+      "length": 16,
+      "batch_size": 1
+    },
+    "class_type": "EmptyLatentVideo",
+    "_meta": {
+      "title": "Empty Latent Video"
+    }
+  },
+  "6": {
+    "inputs": {
+      "model_name": "mm_sd_v15_v2.ckpt"
+    },
+    "class_type": "AnimateDiffLoaderV1",
+    "_meta": {
+      "title": "AnimateDiff Loader"
+    }
+  },
+  "7": {
+    "inputs": {
+      "model": ["1", 0],
+      "motion_model": ["6", 0],
+      "latent_image": ["4", 0],
+      "frames": 16,
+      "overlap": 4,
+      "motion_scale": 1.0
+    },
+    "class_type": "ADE_AnimateDiffModelLoaderV1",
+    "_meta": {
+      "title": "AnimateDiff Motion Model"
+    }
+  },
+  "8": {
+    "inputs": {
+      "samples": ["7", 0],
+      "vae": ["1", 2]
+    },
+    "class_type": "VAEDecode",
+    "_meta": {
+      "title": "VAE Decode"
+    }
+  },
+  "9": {
+    "inputs": {
+      "images": ["8", 0],
+      "fps": 8,
+      "format": "video/mp4"
+    },
+    "class_type": "VHS_VideoCombine",
+    "_meta": {
+      "title": "Video Combine"
+    }
+  },
+  "10": {
+    "inputs": {
+      "video": ["9", 0],
+      "filename_prefix": "anim_test"
+    },
+    "class_type": "VHS_VideoOutput",
+    "_meta": {
+      "title": "Save Video"
+    }
+  }
+}

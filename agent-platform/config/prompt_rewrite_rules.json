@@ -1,0 +1,102 @@
+{
+  "face_consistency": {
+    "positive_append": [
+      "consistent facial identity",
+      "same person",
+      "same hairstyle",
+      "same age",
+      "no facial drift"
+    ],
+    "negative_append": [
+      "identity drift",
+      "face swap",
+      "changing facial structure"
+    ]
+  },
+  "motion_instability": {
+    "motion_override": "single clear motion beat, stable camera, smooth interpolation, no abrupt transition, no jitter",
+    "negative_append": [
+      "jitter",
+      "stutter",
+      "abrupt pose jump"
+    ]
+  },
+  "artifact_noise": {
+    "positive_append": [
+      "clean edges",
+      "stable lighting",
+      "temporally coherent texture"
+    ],
+    "negative_append": [
+      "flicker",
+      "ghosting",
+      "warping",
+      "noisy grain",
+      "compression artifacts"
+    ]
+  },
+  "under_sampling_risk": {
+    "positive_append": [
+      "clean edges",
+      "stable lighting",
+      "temporally coherent texture"
+    ],
+    "negative_append": [
+      "flicker",
+      "ghosting",
+      "warping",
+      "noisy grain",
+      "compression artifacts"
+    ]
+  },
+  "incomplete_frames": {
+    "motion_override": "minimal motion, stable composition, low-complexity temporal change",
+    "positive_append": [
+      "keep scene simple and stable across full frame sequence"
+    ]
+  },
+  "wooden_motion": {
+    "motion_append": "precise gait, shoulder-pelvis coordination, clear weight transfer, avoid mannequin-like motion",
+    "positive_append": [
+      "readable full-body motion mechanics",
+      "natural action timing"
+    ],
+    "negative_append": [
+      "stiff torso",
+      "disconnected limb movement",
+      "robotic body language"
+    ]
+  },
+  "emotion_not_visible": {
+    "motion_append": "emotion expressed through posture, gaze, breath rhythm, and gesture timing",
+    "positive_append": [
+      "clear emotional physicalization",
+      "expressive face and head motion"
+    ],
+    "negative_append": [
+      "blank expression",
+      "emotionless movement"
+    ]
+  },
+  "multi_character_conflict": {
+    "motion_append": "main character detailed action, secondary characters simplified complementary action, background natural low-amplitude behavior",
+    "positive_append": [
+      "clear role priority in blocking"
+    ],
+    "negative_append": [
+      "all characters moving with same intensity",
+      "chaotic crowd choreography"
+    ]
+  },
+  "weak_scene_grounding": {
+    "positive_append": [
+      "format block [Scene] with explicit environment anchors and reflective surfaces",
+      "camera/action/effect shot progression keeps environment cues persistent"
+    ],
+    "motion_append": "3-beat shot plan with Camera/Action/Effect to keep scene-action alignment",
+    "negative_append": [
+      "floating subject with no scene interaction",
+      "generic background unrelated to prompt"
+    ]
+  }
+}

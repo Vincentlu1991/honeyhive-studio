@@ -1,0 +1,128 @@
+{
+  "workflows": {
+    "sd15_animatediff": {
+      "description": "SD1.5 + AnimateDiff Gen1, 16 frames animation",
+      "file_path": "../workflow_sd15_animatediff.json",
+      "node_mapping": {
+        "positive_prompt_node": "2",
+        "negative_prompt_node": "3",
+        "sampler_node": "4",
+        "image_node": null
+      },
+      "parameters": {
+        "steps": 25,
+        "cfg": 7.5,
+        "sampler_name": "dpmpp_2m",
+        "scheduler": "karras",
+        "context_length": 16
+      },
+      "tags": ["animation", "sd15", "motion"]
+    },
+    "sd15_simple": {
+      "description": "SD1.5 simple text-to-image workflow",
+      "file_path": "../workflow_sd15_simple.json",
+      "node_mapping": {
+        "positive_prompt_node": "2",
+        "negative_prompt_node": "3",
+        "sampler_node": "4",
+        "image_node": null
+      },
+      "parameters": {
+        "steps": 30,
+        "cfg": 7.0,
+        "sampler_name": "dpmpp_2m",
+        "scheduler": "karras"
+      },
+      "tags": ["text2image", "sd15", "basic"]
+    },
+    "ltxv_img2video": {
+      "description": "LTXV image-to-video workflow, 25 frames",
+      "file_path": "../workflow_ltxv_img2video_test.json",
+      "node_mapping": {
+        "positive_prompt_node": "3",
+        "negative_prompt_node": "4",
+        "sampler_node": "6",
+        "image_node": "1"
+      },
+      "parameters": {
+        "steps": 40,
+        "cfg": 7.5,
+        "sampler_name": "dpmpp_2m",
+        "scheduler": "karras"
+      },
+      "tags": ["video", "ltxv", "image2video"]
+    },
+    "ltxv_text2video": {
+      "description": "LTXV text-to-video workflow, 25 frames",
+      "file_path": "../workflow_ltxv_text2video_test.json",
+      "node_mapping": {
+        "positive_prompt_node": "3",
+        "negative_prompt_node": "4",
+        "sampler_node": "6",
+        "image_node": null
+      },
+      "parameters": {
+        "steps": 40,
+        "cfg": 7.5,
+        "sampler_name": "dpmpp_2m",
+        "scheduler": "karras"
+      },
+      "tags": ["video", "ltxv", "text2video"]
+    },
+    "sd15_i2v_realistic": {
+      "description": "SD1.5 image-to-video, realistic style",
+      "file_path": "../workflow_sd15_i2v_realistic.json",
+      "node_mapping": {
+        "positive_prompt_node": "2",
+        "negative_prompt_node": "3",
+        "sampler_node": "8",
+        "image_node": "4"
+      },
+      "parameters": {
+        "steps": 30,
+        "cfg": 7.0,
+        "sampler_name": "dpmpp_2m",
+        "scheduler": "karras"
+      },
+      "tags": ["video", "sd15", "image2video", "realistic"]
+    },
+    "sd15_i2v_face_lock": {
+      "description": "SD1.5 image-to-video, identity lock first",
+      "file_path": "../workflow_sd15_i2v_face_lock.json",
+      "node_mapping": {
+        "positive_prompt_node": "2",
+        "negative_prompt_node": "3",
+        "sampler_node": "8",
+        "image_node": "4"
+      },
+      "parameters": {
+        "steps": 20,
+        "cfg": 5.5,
+        "sampler_name": "dpmpp_2m",
+        "scheduler": "karras"
+      },
+      "tags": ["video", "sd15", "image2video", "face-lock"]
+    },
+    "sd15_i2v_medium": {
+      "description": "SD1.5 image-to-video, balanced quality and speed",
+      "file_path": "../workflow_sd15_i2v_medium.json",
+      "node_mapping": {
+        "positive_prompt_node": "2",
+        "negative_prompt_node": "3",
+        "sampler_node": "8",
+        "image_node": "4"
+      },
+      "parameters": {
+        "steps": 22,
+        "cfg": 6.5,
+        "sampler_name": "dpmpp_2m",
+        "scheduler": "karras"
+      },
+      "tags": ["video", "sd15", "image2video", "balanced"]
+    }
+  },
+  "defaults": {
+    "preferred_workflow": "sd15_animatediff",
+    "fallback_workflow": "sd15_simple"
+  }
+}

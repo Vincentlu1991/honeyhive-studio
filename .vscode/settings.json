@@ -1,0 +1,10 @@
+{
+    "chat.tools.terminal.autoApprove": {
+        "Test-Path": true,
+        "/^\\$files = Get-ChildItem -Path \"c:\\\\Users\\\\User\\\\OneDrive\\\\文档\\\\New project\" -Recurse -File; \\$files \\| Get-FileHash -Algorithm SHA256 \\| Group-Object Hash \\| Where-Object \\{ \\$_\\.Count -gt 1 \\} \\| ForEach-Object \\{ \\$_\\.Group \\} \\| Select-Object Hash, Path \\| Format-List$/": {
+            "approve": true,
+            "matchCommandLine": true
+        }
+    },
+    "python-envs.defaultEnvManager": "ms-python.python:system"
+}

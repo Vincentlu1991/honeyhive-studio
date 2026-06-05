@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+set -e
+
+powershell -ExecutionPolicy Bypass -File scripts/quality-gate.ps1

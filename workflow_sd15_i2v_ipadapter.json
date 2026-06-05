@@ -1,0 +1,108 @@
+{
+  "1": {
+    "inputs": { "ckpt_name": "v1-5-pruned-emaonly.safetensors" },
+    "class_type": "CheckpointLoaderSimple",
+    "_meta": { "title": "Load Checkpoint" }
+  },
+  "2": {
+    "inputs": { "text": "same person as reference photo, 1 person jumping in the air, feet off ground, mid jump, arms raised, big smile showing teeth, photorealistic, full body, preserve face identity", "clip": ["1", 1] },
+    "class_type": "CLIPTextEncode",
+    "_meta": { "title": "Positive Prompt" }
+  },
+  "3": {
+    "inputs": { "text": "different person, identity drift, face change, cartoon, anime, 3d render, deformed face, bad anatomy, extra limbs, ghosting, blurry, watermark", "clip": ["1", 1] },
+    "class_type": "CLIPTextEncode",
+    "_meta": { "title": "Negative Prompt" }
+  },
+  "4": {
+    "inputs": { "image": "i2v_source.png", "upload": "image" },
+    "class_type": "LoadImage",
+    "_meta": { "title": "Load Source Image" }
+  },
+  "5": {
+    "inputs": { "upscale_method": "lanczos", "width": 448, "height": 640, "crop": "center", "image": ["4", 0] },
+    "class_type": "ImageScale",
+    "_meta": { "title": "Scale Image" }
+  },
+  "6": {
+    "inputs": { "pixels": ["5", 0], "vae": ["1", 2] },
+    "class_type": "VAEEncode",
+    "_meta": { "title": "VAE Encode" }
+  },
+  "7": {
+    "inputs": { "amount": 16, "samples": ["6", 0] },
+    "class_type": "RepeatLatentBatch",
+    "_meta": { "title": "Repeat Latent (32 frames)" }
+  },
+  "8": {
+    "inputs": { "model_name": "mm_sd_v15_v2.ckpt" },
+    "class_type": "ADE_LoadAnimateDiffModel",
+    "_meta": { "title": "Load AnimateDiff Model" }
+  },
+  "9": {
+    "inputs": { "motion_model": ["8", 0] },
+    "class_type": "ADE_ApplyAnimateDiffModelSimple",
+    "_meta": { "title": "Apply AnimateDiff" }
+  },
+  "10": {
+    "inputs": { "model": ["1", 0], "beta_schedule": "autoselect", "m_models": ["9", 0] },
+    "class_type": "ADE_UseEvolvedSampling",
+    "_meta": { "title": "Use Evolved Sampling" }
+  },
+  "11": {
+    "inputs": { "model": ["10", 0], "preset": "PLUS FACE (portraits)" },
+    "class_type": "IPAdapterUnifiedLoader",
+    "_meta": { "title": "IPAdapter Loader (Face)" }
+  },
+  "12": {
+    "inputs": {
+      "model": ["11", 0],
+      "ipadapter": ["11", 1],
+      "image": ["5", 0],
+      "weight": 1.0,
+      "start_at": 0.0,
+      "end_at": 1.0,
+      "weight_type": "standard"
+    },
+    "class_type": "IPAdapter",
+    "_meta": { "title": "IPAdapter Apply Face Lock" }
+  },
+  "13": {
+    "inputs": {
+      "seed": 42,
+      "steps": 20,
+      "cfg": 6.0,
+      "sampler_name": "dpmpp_2m",
+      "scheduler": "karras",
+      "denoise": 0.85,
+      "model": ["12", 0],
+      "positive": ["2", 0],
+      "negative": ["3", 0],
+      "latent_image": ["7", 0]
+    },
+    "class_type": "KSampler",
+    "_meta": { "title": "KSampler" }
+  },
+  "14": {
+    "inputs": { "samples": ["13", 0], "vae": ["1", 2] },
+    "class_type": "VAEDecode",
+    "_meta": { "title": "VAE Decode" }
+  },
+  "15": {
+    "inputs": {
+      "frame_rate": 4,
+      "loop_count": 0,
+      "filename_prefix": "sd15_i2v_ipadapter",
+      "format": "video/h264-mp4",
+      "pingpong": false,
+      "save_output": true,
+      "images": ["14", 0]
+    },
+    "class_type": "VHS_VideoCombine",
+    "_meta": { "title": "Video Output" }
+  }
+}
+
+
+
+
